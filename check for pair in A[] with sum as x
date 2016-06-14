@@ -1,0 +1,34 @@
+#include<stdio.h>
+int cmpfunc(const void*,const void *);
+int cmpfunc(const void *a,const void *b)
+{
+	return (*(int *)a-(*(int *)b));
+}
+int main(void)
+{
+	int arr[100];
+	int n,i,j,no;
+	scanf("%d",&n);
+	scanf("%d",&no);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	qsort(arr,n,sizeof(int),cmpfunc);
+  i=0;j=n-1;
+	while(i<n)
+	{
+		if((arr[i]+arr[j])>no)
+			j--;
+		else
+		if((arr[i]+arr[j])<no)
+			i++;
+		else
+		if((arr[i]+arr[j])==no)
+		{
+			printf("%d + %d = %d ",arr[i],arr[j],no);
+			break;
+		}
+	}
+	return 0;
+}
